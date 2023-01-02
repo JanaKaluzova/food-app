@@ -9,7 +9,7 @@ import {
 import MealsImage from "../../assets/meal.jpg";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledHeader>
