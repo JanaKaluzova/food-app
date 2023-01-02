@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AppBar, Box, Button } from "@mui/material";
+import { AppBar, Badge, BadgeProps, Box, Button } from "@mui/material";
 
 export const StyledHeader = styled(AppBar)`
   position: fixed;
@@ -30,4 +30,21 @@ export const ButtonWrapper = styled(Button)`
   flex-direction: row;
   justify-content: space-between;
   width: 150px;
+  border-radius: 20px;
+  background-color: #5a1508;
+  border: 1px solid #5a1508;
+
+  :hover {
+    border: 1px solid #5a1508;
+  }
 `;
+
+export const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: "1px solid",
+    padding: "0 4px",
+    backgroundColor: "#914e4e",
+  },
+}));
