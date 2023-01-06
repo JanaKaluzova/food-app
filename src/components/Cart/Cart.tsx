@@ -4,22 +4,16 @@ import {
   ButtonWrapper,
   ClosingButton,
   OrderButton,
+  style,
   StyledList,
   Total,
 } from "./Cart.styled";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
+type CloseCart = {
+  onClose: () => void;
 };
 
-export const Cart: React.FC = () => {
+export const Cart: React.FC<CloseCart> = ({ onClose }) => {
   const cartItems = (
     <StyledList>
       {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
@@ -30,6 +24,7 @@ export const Cart: React.FC = () => {
 
   return (
     <Modal
+      onClose={onClose}
       open
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -42,7 +37,7 @@ export const Cart: React.FC = () => {
           </Typography>
           <Typography id="modal-modal-description">35.62</Typography>
         </Total>
-        <ButtonWrapper>
+        <ButtonWrapper onClick={onClose}>
           <ClosingButton>Close</ClosingButton>
           <OrderButton>Order</OrderButton>
         </ButtonWrapper>

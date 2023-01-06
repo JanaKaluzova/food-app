@@ -9,12 +9,16 @@ import {
 import MealsImage from "../../assets/meal.jpg";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 
-export const Header: React.FC = () => {
+type Showcart = {
+  onShowCart: () => void;
+};
+
+export const Header: React.FC<Showcart> = ({ onShowCart }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledHeader>
         <Typography variant="h4">React Meals</Typography>
-        <ButtonWrapper variant="outlined">
+        <ButtonWrapper variant="outlined" onClick={onShowCart}>
           <IconButton aria-label="cart">
             <StyledBadge badgeContent={4} color="success">
               <ShoppingBasketOutlinedIcon
