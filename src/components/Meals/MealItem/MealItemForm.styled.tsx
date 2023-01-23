@@ -29,8 +29,13 @@ export const StyledButton = styled(Button)`
 `;
 
 export const InputField = styled(TextField)`
-  width: 4rem;
+  width: 3.5rem;
   border-radius: 5px;
 
   padding-left: 0.5rem;
+  /* input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  } */
 `;
