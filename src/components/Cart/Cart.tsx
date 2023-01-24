@@ -1,25 +1,49 @@
-import { Box, Modal, Typography } from "@mui/material";
-import React from "react";
+import { Box, Modal } from "@mui/material";
+import React, { useContext } from "react";
+import { CartContext, CartItem } from "../../store/Cart-context";
 import {
   ButtonWrapper,
   ClosingButton,
   OrderButton,
   style,
+  StyledBoxOfList,
   StyledList,
   Total,
+  TotalAmount,
 } from "./Cart.styled";
+import { CartItemComponent } from "./CartItem";
 
 type CloseCart = {
   onClose: () => void;
 };
 
 export const Cart: React.FC<CloseCart> = ({ onClose }) => {
+  const cartCtx = useContext(CartContext);
+
+  const totalAmount = `$ ${cartCtx.totalAmount.toFixed(2)}`;
+  const hasItems = cartCtx.items.length > 0;
+
+  const removeItemHandler = (id: string) => {
+    cartCtx.removeItem(id);
+  };
+  const addItemHandler = (item: CartItem) => {};
+
   const cartItems = (
-    <StyledList>
-      {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
-        <li key={item.id}>{item.name}</li>
-      ))}
-    </StyledList>
+    <StyledBoxOfList>
+      <StyledList>
+        {cartCtx.items.map((item) => (
+          <CartItemComponent
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            amount={item.amount}
+            price={item.price}
+            onRemove={removeItemHandler.bind(null, item.id)}
+            onAdd={addItemHandler.bind(null, item)}
+          />
+        ))}
+      </StyledList>
+    </StyledBoxOfList>
   );
 
   return (
@@ -32,14 +56,16 @@ export const Cart: React.FC<CloseCart> = ({ onClose }) => {
       <Box sx={style}>
         {cartItems}
         <Total>
-          <Typography id="modal-modal-title" variant="h6" component="h5">
+          <TotalAmount id="modal-modal-title" variant="h6">
             Total Amount
-          </Typography>
-          <Typography id="modal-modal-description">35.62</Typography>
+          </TotalAmount>
+          <TotalAmount id="modal-modal-description" variant="h6">
+            {totalAmount}
+          </TotalAmount>
         </Total>
         <ButtonWrapper onClick={onClose}>
           <ClosingButton>Close</ClosingButton>
-          <OrderButton>Order</OrderButton>
+          {hasItems && <OrderButton>Order</OrderButton>}
         </ButtonWrapper>
       </Box>
     </Modal>

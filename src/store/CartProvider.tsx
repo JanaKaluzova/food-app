@@ -1,5 +1,5 @@
-import React, { PropsWithChildren, ReducerAction, useReducer } from "react";
-import { Meal } from "../components/Meals/MealItem/MealItem";
+import React, { PropsWithChildren, useReducer } from "react";
+
 import { CartContext, CartContextType, CartItem } from "./Cart-context";
 
 type CartState = {
@@ -26,9 +26,26 @@ type CartAction = AddToCartAction | RemoveFromCartAction;
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   if (action.type === "ADD_TO_CART") {
-    const updatedItems = state.items.concat(action.item);
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
+
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+
+    const existingCartItem = state.items[existingCartItemIndex];
+    let updatedItems;
+
+    if (existingCartItem) {
+      const updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount + action.item.amount,
+      };
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    } else {
+      updatedItems = state.items.concat(action.item);
+    }
 
     return {
       items: updatedItems,
