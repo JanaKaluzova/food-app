@@ -1,15 +1,18 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import {
   StyledHeader,
   ImageBox,
   ButtonWrapper,
   StyledBadge,
+  HeaderText,
+  CartText,
 } from "./Header.styled";
 import MealsImage from "../../assets/meal.jpg";
-import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
+
 import { useContext } from "react";
 import { CartContext } from "../../store/Cart-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 
 type Showcart = {
   onShowCart: () => void;
@@ -22,20 +25,16 @@ export const Header: React.FC<Showcart> = ({ onShowCart }) => {
     return currentNumber + item.amount;
   }, 0);
 
-  console.log(numberOfCartItems);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledHeader>
-        <Typography variant="h4">React Meals</Typography>
+        <HeaderText>React Meals</HeaderText>
         <ButtonWrapper variant="outlined" onClick={onShowCart}>
           <StyledBadge badgeContent={numberOfCartItems} color="success">
-            <ShoppingBasketOutlinedIcon
-              fontSize="large"
-              sx={{ color: "#fff" }}
-            />
+            <FontAwesomeIcon icon={faBasketShopping} size="2x" color="white" />
           </StyledBadge>
 
-          <Typography sx={{ color: "#fff" }}>Cart</Typography>
+          <CartText>Cart</CartText>
         </ButtonWrapper>
       </StyledHeader>
       <ImageBox>

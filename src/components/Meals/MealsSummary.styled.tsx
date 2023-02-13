@@ -8,8 +8,8 @@ export const Wrapper = styled(Box)`
   margin: auto;
   margin-top: -10rem;
   position: relative;
-  background-color: #383838;
-  color: white;
+  background-color: #457b9d;
+  color: #f1faee;
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);

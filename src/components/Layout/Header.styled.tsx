@@ -1,5 +1,13 @@
 import styled from "@emotion/styled";
-import { AppBar, Badge, BadgeProps, Box, Button } from "@mui/material";
+
+import {
+  AppBar,
+  Badge,
+  BadgeProps,
+  Box,
+  Button,
+  Typography,
+} from "@mui/material";
 
 export const StyledHeader = styled(AppBar)`
   position: fixed;
@@ -7,8 +15,8 @@ export const StyledHeader = styled(AppBar)`
   left: 0;
   width: 100%;
   height: 5rem;
-  background-color: #8a2b06;
-  color: white;
+  background-color: #1d3557;
+  color: #f1faee;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -31,11 +39,11 @@ export const ButtonWrapper = styled(Button)`
   justify-content: space-between;
   width: 150px;
   border-radius: 20px;
-  background-color: #5a1508;
-  border: 1px solid #5a1508;
+  background-color: #457b9d;
+  border: 1px solid #457b9d;
 
   :hover {
-    border: 1px solid #5a1508;
+    border: 1px solid #a8dadc;
   }
 `;
 
@@ -45,6 +53,23 @@ export const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     top: 13,
     border: "1px solid",
     padding: "0 4px",
-    backgroundColor: "#914e4e",
+    backgroundColor: "#1d3557",
   },
 }));
+
+export const HeaderText = styled(Typography)`
+  font-weight: 800;
+  font-size: 34px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+`;
+
+export const CartText = styled(Typography)`
+  font-size: 20px;
+  font-weight: 400;
+  color: #f1faee;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  margin-right: 5px;
+`;

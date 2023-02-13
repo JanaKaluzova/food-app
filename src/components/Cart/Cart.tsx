@@ -20,13 +20,15 @@ type CloseCart = {
 export const Cart: React.FC<CloseCart> = ({ onClose }) => {
   const cartCtx = useContext(CartContext);
 
-  const totalAmount = `$ ${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
   const removeItemHandler = (id: string) => {
     cartCtx.removeItem(id);
   };
-  const addItemHandler = (item: CartItem) => {};
+  const addItemHandler = (item: CartItem) => {
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
 
   const cartItems = (
     <StyledBoxOfList>
