@@ -23,7 +23,7 @@ export const CartItemComponent: React.FC<CartItemProps> = ({
   onRemove,
   onAdd,
 }) => {
-  const priceOfItem = `$ ${price.toFixed(2)}`;
+  const priceOfItem = `${price.toFixed(0)} Kč`;
 
   return (
     <CartItemList>

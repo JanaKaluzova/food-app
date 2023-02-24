@@ -5,7 +5,7 @@ export const CartItemList = styled(List)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.5px solid #5a1508;
+  border-bottom: 0.5px solid #1d3557;
   padding: 1rem 0;
   margin: 1rem 0;
 `;
@@ -46,8 +46,8 @@ export const CartItemButton = styled(Button)`
   font: inherit;
   font-weight: bold;
   font-size: 1.25rem;
-  color: #8a2b06;
-  border: 1px solid #5a1508;
+  color: #457b9d;
+  border: 1px solid #457b9d;
   width: 3rem;
   text-align: center;
   border-radius: 6px;
@@ -58,7 +58,7 @@ export const CartItemButton = styled(Button)`
 
   :hover,
   :active {
-    background-color: #5a1508;
+    background-color: #1d3557;
     color: white;
   }
 `;

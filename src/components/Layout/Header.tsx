@@ -28,13 +28,13 @@ export const Header: React.FC<Showcart> = ({ onShowCart }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledHeader>
-        <HeaderText>React Meals</HeaderText>
+        <HeaderText>Nejlepší rozvoz jídla</HeaderText>
         <ButtonWrapper variant="outlined" onClick={onShowCart}>
           <StyledBadge badgeContent={numberOfCartItems} color="success">
             <FontAwesomeIcon icon={faBasketShopping} size="2x" color="white" />
           </StyledBadge>
 
-          <CartText>Cart</CartText>
+          <CartText>Košík</CartText>
         </ButtonWrapper>
       </StyledHeader>
       <ImageBox>

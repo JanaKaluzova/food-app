@@ -52,9 +52,9 @@ export const MealItemForm: React.FC<MealInput> = ({
       </FormControl>
 
       <StyledButton type="submit" variant="outlined">
-        + Add
+        Přidat
       </StyledButton>
-      {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
+      {!amountIsValid && <p>Prosím, zadejte množství (1-5).</p>}
     </Wrapper>
   );
 };

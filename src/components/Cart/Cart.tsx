@@ -20,7 +20,7 @@ type CloseCart = {
 export const Cart: React.FC<CloseCart> = ({ onClose }) => {
   const cartCtx = useContext(CartContext);
 
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `${cartCtx.totalAmount.toFixed(0)} Kč`;
   const hasItems = cartCtx.items.length > 0;
 
   const removeItemHandler = (id: string) => {
@@ -59,15 +59,15 @@ export const Cart: React.FC<CloseCart> = ({ onClose }) => {
         {cartItems}
         <Total>
           <TotalAmount id="modal-modal-title" variant="h6">
-            Total Amount
+            Celkem
           </TotalAmount>
           <TotalAmount id="modal-modal-description" variant="h6">
             {totalAmount}
           </TotalAmount>
         </Total>
         <ButtonWrapper onClick={onClose}>
-          <ClosingButton>Close</ClosingButton>
-          {hasItems && <OrderButton>Order</OrderButton>}
+          <ClosingButton>Zavřít</ClosingButton>
+          {hasItems && <OrderButton>Objednat</OrderButton>}
         </ButtonWrapper>
       </Box>
     </Modal>

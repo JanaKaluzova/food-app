@@ -9,9 +9,7 @@ export const StyledBoxOfList = styled(Box)`
 
 export const StyledList = styled(List)`
   list-style: none;
-
   margin: 0;
-
   padding: 0;
   max-height: 20rem;
 `;
@@ -28,46 +26,46 @@ export const Total = styled(Box)`
 
 export const ButtonWrapper = styled(Box)`
   text-align: right;
-  color: #8a2b06;
+  color: #457b9d;
 `;
 
 export const ClosingButton = styled(Button)`
-  color: #8a2b06;
+  color: #457b9d;
   background-color: transparent;
   border-radius: 25px;
   padding: 0.5rem 2rem;
-  border: 1px solid #8a2b06;
+  border: 1px solid #457b9d;
 
   :hover {
-    background-color: #5a1a01;
-    border-color: #5a1a01;
+    background-color: #1d3557;
+    border-color: #1d3557;
     color: white;
   }
 
   :active {
-    background-color: #5a1a01;
-    border-color: #5a1a01;
+    background-color: #1d3557;
+    border-color: #1d3557;
     color: white;
   }
 `;
 
 export const OrderButton = styled(Button)`
-  border: 1px solid #8a2b06;
+  border: 1px solid #457b9d;
   padding: 0.5rem 2rem;
   border-radius: 25px;
   margin-left: 1rem;
   color: #fff;
-  background-color: #8a2b06;
+  background-color: #457b9d;
 
   :hover {
-    background-color: #5a1a01;
-    border-color: #5a1a01;
+    background-color: #1d3557;
+    border-color: #1d3557;
     color: white;
   }
 
   :active {
-    background-color: #5a1a01;
-    border-color: #5a1a01;
+    background-color: #1d3557;
+    border-color: #1d3557;
     color: white;
   }
 `;

@@ -5,14 +5,14 @@ import { Section, Wrapper } from "./MealsSummary.styled";
 export const MealsSummary: React.FC = () => {
   return (
     <Wrapper>
-      <Typography variant="h3">We deliver delicious food</Typography>
+      <Typography variant="h3">Rozvážíme fantastické jídlo</Typography>
       <Section variant="body1">
-        Choose your favorite meal from our selection of available meals and
-        enjoy a delicious lunch or dinner at home.
+        Vyberte si z naší skvělé nabídky chutného jídla a povečeřte s rodinou v
+        pohodlí Vašeho domu.
       </Section>
       <Section variant="body1">
-        All our meals are cooked with quality ingredients, just-in-time and of
-        course by experienced chefs!
+        Všechna naše jídla jsou uvařena z těch nejlepších surovin výjimečných
+        chutí. Používáme pouze čerstvé ingredience a vaříme s láskou.
       </Section>
     </Wrapper>
   );
