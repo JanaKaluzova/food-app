@@ -31,3 +31,14 @@ export const StyledCard = styled(Card)`
   border-radius: 10px;
   border: 0.5px solid grey;
 `;
+
+export const Loading = styled(Box)`
+  text-align: center;
+  color: #1d3557;
+  font-size: 24px;
+`;
+
+export const ErrorMessage = styled(Box)`
+  text-align: center;
+  color: #1d3557;
+`;

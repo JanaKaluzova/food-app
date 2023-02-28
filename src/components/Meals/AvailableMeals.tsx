@@ -1,40 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHttp } from "../../hooks/use-http";
 import {
+  Loading,
   MealsList,
   MealsListWrapper,
   StyledCard,
 } from "./AvailableMeals.styled";
 import { MealItem } from "./MealItem/MealItem";
 
-const DUMMY_MEALS = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Čerstvá ryba a zelenina",
-    price: 235,
-  },
-  {
-    id: "m2",
-    name: "Řízek",
-    description: "Německá specialita!",
-    price: 199,
-  },
-  {
-    id: "m3",
-    name: "Hamburger",
-    description: "Americký, masitý",
-    price: 259,
-  },
-  {
-    id: "m4",
-    name: "Zelená mísa",
-    description: "Zdravá...a zelená...",
-    price: 145,
-  },
-];
+export type Meals = {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+};
 
 export const AvailableMeals: React.FC = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => (
+  const [meals, setMeals] = useState<Meals[]>([]);
+
+  const { isLoading, httpError, sendRequest: fetchMeals } = useHttp();
+
+  useEffect(() => {
+    const transformMeals = (mealsObj: Meals[]) => {
+      const loadedMeals: Meals[] = [];
+
+      for (const key in mealsObj) {
+        loadedMeals.push({
+          id: key,
+          name: mealsObj[key].name,
+          description: mealsObj[key].description,
+          price: mealsObj[key].price,
+        });
+      }
+      setMeals(loadedMeals);
+    };
+
+    fetchMeals({
+      requestConfig: {
+        url: "https://food-app-a5e21-default-rtdb.europe-west1.firebasedatabase.app/meals.json",
+      },
+      applyData: transformMeals,
+    });
+  }, []);
+
+  if (isLoading) {
+    return <Loading>Loading...</Loading>;
+  }
+
+  if (httpError) {
+    return <p>{httpError}</p>;
+  }
+
+  const mealsList = meals.map((meal) => (
     <MealItem
       id={meal.id}
       key={meal.id}
