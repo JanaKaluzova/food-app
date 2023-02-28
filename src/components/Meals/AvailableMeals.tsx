@@ -18,10 +18,14 @@ export type Meals = {
 export const AvailableMeals: React.FC = () => {
   const [meals, setMeals] = useState<Meals[]>([]);
 
-  const { isLoading, httpError, sendRequest: fetchMeals } = useHttp();
+  const { isLoading, sendRequest: fetchMeals } = useHttp();
 
   useEffect(() => {
     const transformMeals = (mealsObj: Meals[]) => {
+      if (isLoading) {
+        return <Loading>Loading...</Loading>;
+      }
+
       const loadedMeals: Meals[] = [];
 
       for (const key in mealsObj) {
@@ -41,15 +45,7 @@ export const AvailableMeals: React.FC = () => {
       },
       applyData: transformMeals,
     });
-  }, []);
-
-  if (isLoading) {
-    return <Loading>Loading...</Loading>;
-  }
-
-  if (httpError) {
-    return <p>{httpError}</p>;
-  }
+  }, [fetchMeals, isLoading]);
 
   const mealsList = meals.map((meal) => (
     <MealItem
