@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useHttp } from "../../hooks/use-http";
+import { useQuery } from "@tanstack/react-query";
+
 import {
   Loading,
   MealsList,
@@ -7,6 +7,7 @@ import {
   StyledCard,
 } from "./AvailableMeals.styled";
 import { MealItem } from "./MealItem/MealItem";
+import axios from "axios";
 
 export type Meals = {
   id: string;
@@ -16,38 +17,37 @@ export type Meals = {
 };
 
 export const AvailableMeals: React.FC = () => {
-  const [meals, setMeals] = useState<Meals[]>([]);
+  const { isLoading, data, isError, error } = useQuery({
+    queryKey: ["meals"],
+    queryFn: () =>
+      axios
+        .get(
+          "https://food-app-a5e21-default-rtdb.europe-west1.firebasedatabase.app/meals.json"
+        )
+        .then((res) => {
+          const loadedMeals: Meals[] = [];
 
-  const { isLoading, sendRequest: fetchMeals } = useHttp();
+          for (const key in res.data) {
+            loadedMeals.push({
+              id: key,
+              name: res.data[key].name,
+              description: res.data[key].description,
+              price: res.data[key].price,
+            });
+          }
+          return loadedMeals;
+        }),
+  });
 
-  useEffect(() => {
-    const transformMeals = (mealsObj: Meals[]) => {
-      if (isLoading) {
-        return <Loading>Loading...</Loading>;
-      }
+  if (isLoading) {
+    return <Loading>Loading...</Loading>;
+  }
 
-      const loadedMeals: Meals[] = [];
+  if (isError) {
+    return <Loading>{JSON.stringify(error)}</Loading>;
+  }
 
-      for (const key in mealsObj) {
-        loadedMeals.push({
-          id: key,
-          name: mealsObj[key].name,
-          description: mealsObj[key].description,
-          price: mealsObj[key].price,
-        });
-      }
-      setMeals(loadedMeals);
-    };
-
-    fetchMeals({
-      requestConfig: {
-        url: "https://food-app-a5e21-default-rtdb.europe-west1.firebasedatabase.app/meals.json",
-      },
-      applyData: transformMeals,
-    });
-  }, [fetchMeals, isLoading]);
-
-  const mealsList = meals.map((meal) => (
+  const mealsList = data?.map((meal: Meals) => (
     <MealItem
       id={meal.id}
       key={meal.id}
